@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Australian Debt Clock | Live 2026</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
+    <link rel="stylesheet" href="fonts/jetbrains-mono.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
         body { font-family: 'JetBrains+Mono', monospace; background-color: #020617; }
         .debt-text { color: #10b981; text-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
         .box-glow { border: 1px solid rgba(30, 41, 59, 1); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
@@ -66,6 +66,15 @@
                 </div>
                 <div>
                     <div class="flex justify-between text-xs mb-1">
+                        <span class="text-white">QUEENSLAND (QLD)</span>
+                        <span class="text-slate-400">$147.8B Est.</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                        <div class="bg-red-500 h-full" style="width: 79%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs mb-1">
                         <span class="text-white">NEW SOUTH WALES (NSW)</span>
                         <span class="text-slate-400">$107.1B Est.</span>
                     </div>
@@ -73,11 +82,56 @@
                         <div class="bg-blue-500 h-full" style="width: 57%"></div>
                     </div>
                 </div>
+                <div>
+                    <div class="flex justify-between text-xs mb-1">
+                        <span class="text-white">SOUTH AUSTRALIA (SA)</span>
+                        <span class="text-slate-400">$36.0B Est.</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                        <div class="bg-purple-500 h-full" style="width: 19%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs mb-1">
+                        <span class="text-white">WESTERN AUSTRALIA (WA)</span>
+                        <span class="text-slate-400">$33.6B Est.</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                        <div class="bg-yellow-500 h-full" style="width: 18%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs mb-1">
+                        <span class="text-white">NORTHERN TERRITORY (NT)</span>
+                        <span class="text-slate-400">$12.0B Est.</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                        <div class="bg-amber-500 h-full" style="width: 6%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs mb-1">
+                        <span class="text-white">AUSTRALIAN CAPITAL TERRITORY (ACT)</span>
+                        <span class="text-slate-400">$11.0B Est.</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                        <div class="bg-cyan-500 h-full" style="width: 6%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs mb-1">
+                        <span class="text-white">TASMANIA (TAS)</span>
+                        <span class="text-slate-400">$7.1B Est.</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                        <div class="bg-green-500 h-full" style="width: 4%"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <footer class="text-center text-slate-600 text-[10px] space-y-2">
-            <p>DATA SOURCE: AOFM Weekly Data Hub & 2025-26 Federal Budget Papers.</p>
+            <p>DATA SOURCE: AOFM Weekly Data Hub, 2025-26 Federal & State Budget Papers.</p>
             <p>Algorithm uses linear interpolation for real-time visualization.</p>
             <div class="pt-4">
                 <button onclick="window.print()" class="text-slate-500 hover:text-white border border-slate-700 px-4 py-1 rounded transition">Save Snapshot</button>
@@ -88,7 +142,7 @@
     <script>
         // --- 2026 LIVE DATA CONFIGURATION ---
         const START_DATE = new Date("2026-01-26T00:00:00").getTime();
-        
+
         const STATS = {
             debt: { start: 988400000000, rate: 2790.00 },
             pop: { start: 28261800, rate: 0.011 },
@@ -105,16 +159,16 @@
             const currentTaxpayers = currentPop * STATS.taxpayersRatio;
 
             // DOM Updates
-            document.getElementById('debt-clock').innerText = 
+            document.getElementById('debt-clock').innerText =
                 currentDebt.toLocaleString('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2 });
 
-            document.getElementById('pop-clock').innerText = 
+            document.getElementById('pop-clock').innerText =
                 Math.floor(currentPop).toLocaleString('en-AU');
 
-            document.getElementById('per-citizen').innerText = 
+            document.getElementById('per-citizen').innerText =
                 (currentDebt / currentPop).toLocaleString('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 });
 
-            document.getElementById('per-taxpayer').innerText = 
+            document.getElementById('per-taxpayer').innerText =
                 (currentDebt / currentTaxpayers).toLocaleString('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 });
         }
 
